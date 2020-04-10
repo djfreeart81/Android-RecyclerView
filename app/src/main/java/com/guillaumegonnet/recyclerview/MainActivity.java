@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private final LinkedList<String> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
+    private int mListSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +42,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // populate the LinkedList
-        for (int i=0; i<20; i++) {
-            mWordList.addLast("Word"+i);
-        }
+        getNewList(20);
 
         // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
@@ -56,6 +53,13 @@ public class MainActivity extends AppCompatActivity {
         // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    private void getNewList(int listSize) {
+        // populate the LinkedList
+        for (int i=0; i<listSize; i++) {
+            mWordList.addLast("Word"+i);
+        }
     }
 
     @Override
@@ -81,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void resetList(MenuItem item) {
-        Toast.makeText(this, "Test reset", Toast.LENGTH_SHORT).show();
+        mWordList.clear();
+        getNewList(20);
+        mRecyclerView.getAdapter().notifyDataSetChanged();
+
     }
 }
