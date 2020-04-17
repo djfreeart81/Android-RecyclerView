@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private final LinkedList<String> mWordList = new LinkedList<>();
     private RecyclerView mRecyclerView;
     private WordListAdapter mAdapter;
-    private int mListSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

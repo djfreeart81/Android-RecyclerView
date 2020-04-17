@@ -19,7 +19,7 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
     private final LinkedList<String> mWordList;
     private LayoutInflater mInflater;
 
-    public WordListAdapter(Context context,LinkedList<String> wordList) {
+    public WordListAdapter(Context context, LinkedList<String> wordList) {
         mInflater = LayoutInflater.from(context);
         this.mWordList = wordList;
     }
@@ -28,10 +28,10 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
         public final TextView wordItemView;
         final WordListAdapter mAdapter;
 
-        public WordViewHolder (View itemView, WordListAdapter adapter) {
+        public WordViewHolder(View itemView, WordListAdapter adapter) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.word);
-            this.mAdapter=adapter;
+            this.mAdapter = adapter;
             itemView.setOnClickListener(this);
         }
 
@@ -42,18 +42,19 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordVi
             // Use that to access the affected item in mWordList.
             String element = mWordList.get(mPosition);
             // Change the word in the mWordList.
-            mWordList.set(mPosition,"Clicked ! "+element);
+            mWordList.set(mPosition, "Clicked ! " + element);
             // Notify the adapter, that the data has changed so it can
             // update the RecyclerView to display the data.
             mAdapter.notifyDataSetChanged();
         }
     }
+
     @NonNull
     @Override
     public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View mItemView=mInflater.inflate(R.layout.wordlist_item,parent,false);
+        View mItemView = mInflater.inflate(R.layout.wordlist_item, parent, false);
 
-        return new WordViewHolder(mItemView,this);
+        return new WordViewHolder(mItemView, this);
     }
 
     @Override
